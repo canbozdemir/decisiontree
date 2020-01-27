@@ -1,0 +1,28 @@
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" *ngIf="decisionTreeCondition">
+  <header class="masthead mb-auto">
+    <div class="row align-items-center condition-text">
+      <div class="mx-auto">
+        <h3>{{currentCondition.text}}</h3>
+      </div>
+    </div>
+  </header>
+  <main role="main" class="inner cover">
+    <div *ngIf="!currentCondition.isLastCondition">
+      <button type="button" class="btn btn-secondary btn-circle btn-answer" (click)="changeCondition(currentCondition.no)">No</button>
+      <button type="button" class="btn btn-primary btn-circle btn-answer" (click)="changeCondition(currentCondition.yes)">Yes</button>
+    </div>
+    <div *ngIf="currentCondition.isLastCondition">
+      <button type="button" class="btn btn-dark btn-circle btn-redecide" (click)="redecide()">Redecide</button>
+    </div>
+  </main>
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>
+        developed by <a href="https://www.linkedin.com/in/can-bozdemir/" target="_blank" title="Linkedin Profile">Can Bozdemir</a>
+      </p>
+    </div>
+  </footer>
+</div>
+<div class="text-center" *ngIf="!currentCondition">
+  No results found
+</div>
