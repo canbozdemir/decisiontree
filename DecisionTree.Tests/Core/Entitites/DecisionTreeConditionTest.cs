@@ -11,16 +11,37 @@ namespace DecisionTree.Tests.Core.Entitites
             [Fact]
             public void ShouldAddSubConditions()
             {
-                DecisionTreeCondition condition = new DecisionTreeCondition("text 2");
+                DecisionTreeCondition condition = new DecisionTreeCondition("text 1");
 
-                condition.AddSubConditions(DecisionTreeConditionYes, DecisionTreeConditionNo);
+                condition.AddSubConditions(SubConditionYes, SubConditionNo);
 
-                condition.Yes.Should().Be(DecisionTreeConditionYes);
-                condition.No.Should().Be(DecisionTreeConditionNo);
+                condition.Yes.Should().Be(SubConditionYes);
+                condition.No.Should().Be(SubConditionNo);
             }
         }
 
-        private static DecisionTreeCondition DecisionTreeConditionYes = new DecisionTreeCondition("text 2");
-        private static DecisionTreeCondition DecisionTreeConditionNo = new DecisionTreeCondition("text 3");
+        public class IsLastCondition
+        {
+            [Fact]
+            public void ShouldReturnTrue_WhenThereAreNoSubConditions()
+            {
+                DecisionTreeCondition condition = new DecisionTreeCondition("text 1");
+
+                condition.IsLastCondition.Should().BeTrue();
+            }
+
+            [Fact]
+            public void ShouldReturnFalse_WhenThereAreSubConditions()
+            {
+                DecisionTreeCondition condition = new DecisionTreeCondition("text 1");
+
+                condition.AddSubConditions(SubConditionYes, SubConditionNo);
+
+                condition.IsLastCondition.Should().BeFalse();
+            }
+        }
+
+        private static DecisionTreeCondition SubConditionYes = new DecisionTreeCondition("text 2");
+        private static DecisionTreeCondition SubConditionNo = new DecisionTreeCondition("text 3");
     }
 }
