@@ -152,8 +152,14 @@ body {
   height: 150px;
   border-radius: 80px;
   font-size: 25px;
+  margin-top: 25px;
 }
 
 .condition-text {
   height: 300px !important;
+}
+
+.list-group {
+  color: #333;
+  text-shadow: none;
 }

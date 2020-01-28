@@ -8,10 +8,22 @@
   </header>
   <main role="main" class="inner cover">
     <div *ngIf="!currentCondition.isLastCondition">
-      <button type="button" class="btn btn-secondary btn-circle btn-answer" (click)="changeCondition(currentCondition.no)">No</button>
-      <button type="button" class="btn btn-primary btn-circle btn-answer" (click)="changeCondition(currentCondition.yes)">Yes</button>
+      <button type="button" class="btn btn-secondary btn-circle btn-answer" (click)="changeCondition(currentCondition.no, 'No')">No</button>
+      <button type="button" class="btn btn-primary btn-circle btn-answer" (click)="changeCondition(currentCondition.yes, 'Yes')">Yes</button>
     </div>
     <div *ngIf="currentCondition.isLastCondition">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <ul class="list-group" *ngFor="let item of selectedConditions; let i = index; let last = last">
+              <li class="list-group-item">
+                {{item.conditionText}}
+                <strong class="text-success" *ngIf="!last">{{selectedConditions[i+1].answer}}</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <button type="button" class="btn btn-dark btn-circle btn-redecide" (click)="redecide()">Redecide</button>
     </div>
   </main>
